@@ -19,25 +19,40 @@
     <title>Frontend Mentor | Job Listings</title>
   </head>
   <body>
+    <div class="design"></div>
     <header class="job__listing__header">
       <div class="filters"></div>
     </header>
     <main class="job__listing__main">
       <div class="container">
         <div class="jobs__wrapper">
-          <div class="job__wrapper">
-            <div class="job__info"></div>
-            <div class="job__filters"></div>
+          <div class="job__wrapper featured">
+            <div class="job__info__wrapper">
+              <img src="./images/loop-studios.svg" alt="" class="logo" />
+              <div class="job__info">
+                <div class="job__info__header">
+                  <h2 class="jop_name tt-c">Photosnap</h2>
+                  <span class="new__badge tt-u">new!</span>
+                  <span class="featured__badge tt-u">featured</span>
+                </div>
+                <div class="">
+                  <h3 class="job__title tt-c">senior frontend developer</h3>
+                </div>
+                <div class="job__info__footer text__muted">
+                  <span class="create__date">1d ago</span> <span>.</span>
+                  <span class="job__state  tt-c">Part Time</span> <span>.</span>
+                  <span class="job__location">USA only</span>
+                </div>
+              </div>
+            </div>
+            <div class="job__filters__wrapper">
+              <span class="job__filter__badge tt-c">frontend</span>
+              <span class="job__filter__badge tt-c">senior</span>
+              <span class="job__filter__badge tt-c">html</span>
+              <span class="job__filter__badge tt-c">css</span>
+              <span class="job__filter__badge tt-c">javascript</span>
+            </div>
           </div>
-          <div class="job__wrapper">
-            <div class="job__info"></div>
-            <div class="job__filters"></div>
-          </div>
-          <div class="job__wrapper">
-            <div class="job__info"></div>
-            <div class="job__filters"></div>
-          </div>
-        </div>
       </div>
     </main>
     <script src="./javascript/script.js" type="module"></script>
