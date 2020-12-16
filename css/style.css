@@ -3,8 +3,8 @@
   /* Primary */
   --desaturated-dark-cyan: hsl(180, 29%, 50%);
   /* Neutral */
-  --light-grayish-cyan: hsl(180, 52%, 96%); /* (Background)*/
-  --light-grayish-cyan: hsl(180, 31%, 95%); /*(Filter Tablets)*/
+  --light-grayish-cyan-background: hsl(180, 52%, 96%); /* (Background)*/
+  --light-grayish-cyan-tablets: hsl(180, 31%, 95%); /*(Filter Tablets)*/
   --dark-grayish-cyan: hsl(180, 8%, 52%);
   --very-dark-grayish-cyan: hsl(180, 14%, 20%);
 }
@@ -20,11 +20,63 @@ div {
   margin: 0;
 }
 body {
-  height: 100vh;
+  min-height: 100vh;
   font-size: 15px;
   font-family: "Spartan", sans-serif;
 }
 input,
 button {
   outline: none;
+}
+
+.container {
+  width: 77%;
+  margin: 0 auto;
+}
+.job__listing__header {
+  min-height: 9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* it is better to be svg but I'm not good with svg */
+  background: url("../images/bg-header-desktop.svg") no-repeat,
+    var(--desaturated-dark-cyan);
+  background-size: cover;
+}
+.job__listing__main {
+  background-color: var(--light-grayish-cyan-background);
+  height: 100vh;
+}
+.jobs__wrapper {
+  padding-top: 5rem;
+  display: grid;
+  grid-gap: 2rem;
+}
+.job__wrapper {
+  min-height: 8.4rem;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0px 13px 13px 0px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 800px) {
+  .container {
+    width: 85%;
+  }
+  .job__listing__header {
+    min-height: 9.5rem;
+    background: url("../images/bg-header-mobile.svg") no-repeat,
+      var(--desaturated-dark-cyan);
+    background-size: cover;
+  }
+  .design {
+    background: url("../design/mobile-design.jpg");
+  }
+  .jobs__wrapper {
+    padding-top: 4rem;
+  }
+  .job__wrapper {
+    min-height: 16rem;
+  }
 }
