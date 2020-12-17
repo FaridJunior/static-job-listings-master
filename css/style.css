@@ -93,6 +93,7 @@ button {
 }
 
 .job__listing__main {
+  min-height: 100vh;
   background-color: var(--light-grayish-cyan-background);
 }
 .jobs__wrapper {
@@ -231,9 +232,11 @@ button {
   .job__languages__tools__wrapper {
     flex-wrap: wrap;
     justify-content: flex-start;
+    padding: 1.2rem 0px;
   }
   .job__filter__badge {
     margin-left: 0px;
+    margin-right: 1rem;
     white-space: nowrap;
   }
 }

@@ -73,17 +73,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectedFiltersWrapper = document.createElement("div");
     selectedFiltersWrapper.className = "selected__filters__wrapper";
     console.log(filters);
-    selectedFiltersWrapper.innerHTML = removeComman(`
+    selectedFiltersWrapper.innerHTML =
+      filters.size > 0
+        ? removeComman(`
         ${[...filters].map(
           (filter) =>
             `<div class="selected__job__filter__badge tt-c">
           ${filter}
-          <button class="remove__filter__btn"><img src="./images/icon-remove.svg" alt="" /></button>
+          <button class="remove__filter__btn" data-filter="${filter}">
+          <img src="./images/icon-remove.svg" alt="" /></button>
           </div>`
         )}
         <div class="clear__selected_filter text__muted">clear</div>
-        `);
+        `)
+        : "";
     jobListingHeader.appendChild(selectedFiltersWrapper);
+    const selectedJobFilterBadge = document.querySelectorAll(
+      ".remove__filter__btn"
+    );
+    selectedJobFilterBadge.forEach((selected) =>
+      selected.addEventListener("click", (e) => {
+        removeFilter(selected.dataset.filter);
+        console.log("aaa", filters);
+      })
+    );
   }
 
   function setHandleFilter() {
@@ -109,12 +122,23 @@ document.addEventListener("DOMContentLoaded", () => {
         if (filters.has(item)) return true;
       }
     }
-    return data.filter((job) =>
-      filtersHasAny(job.role, job.level, ...job.tools, ...job.languages)
-    );
+    // if there is a filters return filtered data otherwise return all data
+    return filters.size > 0
+      ? data.filter((job) =>
+          filtersHasAny(job.role, job.level, ...job.tools, ...job.languages)
+        )
+      : data;
+  }
+  function removeFilter(filter) {
+    filters = new Set([...filters].filter((f) => f !== filter));
+    updateUI(filterJops(data, filters), filters);
   }
 
-  displayJops(data);
+  function updateUI(data, filters) {
+    displayJops(data);
+    displayFilters(filters);
+  }
+  updateUI(data, filters);
 });
 
 function removeComman(str) {
