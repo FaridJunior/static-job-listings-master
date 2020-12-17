@@ -2,7 +2,6 @@ import { data } from "./data.js";
 document.addEventListener("DOMContentLoaded", () => {
   const jobsWrapper = document.querySelector(".jobs__wrapper");
   let filters = new Set();
-  let filtersBtns;
   function setJob({
     company,
     logo,
@@ -65,17 +64,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     jobsWrapper.appendChild(fragment);
     setHandleFilter();
-    displayFilters();
   }
 
-  function displayFilters() {
+  function displayFilters(filters) {
     const jobListingHeader = document.querySelector(".job__listing__header");
     const selectedFiltersWrapper = document.createElement("div");
+    const clearSelectedFilterBtn = document.createElement("div");
+    clearSelectedFilterBtn.textContent = "clear";
+    clearSelectedFilterBtn.classList.add(
+      "clear__selected_filter",
+      "text__muted"
+    );
     selectedFiltersWrapper.className = "selected__filters__wrapper";
-    console.log(filters);
-    selectedFiltersWrapper.innerHTML =
-      filters.size > 0
-        ? removeComman(`
+    selectedFiltersWrapper.innerHTML = removeComman(`
         ${[...filters].map(
           (filter) =>
             `<div class="selected__job__filter__badge tt-c">
@@ -84,9 +85,10 @@ document.addEventListener("DOMContentLoaded", () => {
           <img src="./images/icon-remove.svg" alt="" /></button>
           </div>`
         )}
-        <div class="clear__selected_filter text__muted">clear</div>
-        `)
-        : "";
+        `);
+    if (filters.size > 0) {
+      selectedFiltersWrapper.appendChild(clearSelectedFilterBtn);
+    }
     jobListingHeader.appendChild(selectedFiltersWrapper);
     const selectedJobFilterBadge = document.querySelectorAll(
       ".remove__filter__btn"
@@ -94,27 +96,21 @@ document.addEventListener("DOMContentLoaded", () => {
     selectedJobFilterBadge.forEach((selected) =>
       selected.addEventListener("click", (e) => {
         removeFilter(selected.dataset.filter);
-        console.log("aaa", filters);
       })
     );
+    clearSelectedFilterBtn.addEventListener("click", () => {
+      filters.clear();
+      updateUI(data, filters);
+    });
   }
 
   function setHandleFilter() {
     const jobLanguagesToolsWrapper = document.querySelectorAll(
       ".job__languages__tools__wrapper"
     );
-    console.log(jobLanguagesToolsWrapper);
     jobLanguagesToolsWrapper.forEach((job) =>
       job.addEventListener("click", handleAddFilter)
     );
-  }
-
-  function handleAddFilter(e) {
-    if (!e.target.classList.contains("job__filter__badge")) return;
-    const filter = e.target.textContent;
-    filters.add(filter);
-    let filteredData = filterJops(data, filters);
-    displayJops(filteredData);
   }
   function filterJops(data, filters) {
     function filtersHasAny(...items) {
@@ -129,6 +125,15 @@ document.addEventListener("DOMContentLoaded", () => {
         )
       : data;
   }
+  function handleAddFilter(e) {
+    if (!e.target.classList.contains("job__filter__badge")) return;
+    const filter = e.target.textContent;
+    // don't update ui if filter is allready exict
+    if (filters.has(filter)) return;
+    filters.add(filter);
+    updateUI(filterJops(data, filters), filters);
+  }
+
   function removeFilter(filter) {
     filters = new Set([...filters].filter((f) => f !== filter));
     updateUI(filterJops(data, filters), filters);
@@ -138,6 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
     displayJops(data);
     displayFilters(filters);
   }
+
   updateUI(data, filters);
 });
 

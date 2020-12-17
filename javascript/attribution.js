@@ -3,25 +3,49 @@ document.addEventListener("DOMContentLoaded", () => {
   const attribution = document.createElement("div");
   attribution.classList.add("attribution");
   // styles
-  const attributionStyle =
-    "position:absolute;bottom:20%;width:200px;left:-200px;transition:transform 300ms ease-in-out;";
-  const attributionContainerStyle =
-    "position:relative;display:flex;flex-direction:column;justify-content:space-around;padding:1rem;align-items:center;font-size:0.8rem;text-align:center;background:#222832;color:#e9e9e9;border-radius:0px4px4px0px;";
-  const attributionMentor = "margin-bottom: 1rem;";
-  const attributionP = "margin:0px0px4px0px;";
-  const attributionA = "color:hsl(228,45%,80%);text-decoration:none;";
+  const attributionStyle = removeSpace(`
+  position: absolute;
+  bottom: 20%;
+  width: 180px;
+  left: -180px;
+  transition: transform;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
+  `);
+  const attributionContainerStyle = removeSpace(`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1rem;
+  align-items: center;
+  font-size: 0.8rem;
+  text-align: center;
+  background: #009688;
+  color: #fefefe;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  `);
+  const attributionMentor = "margin-bottom:.6rem;";
+  const attributionP = "margin-bottom:4px;";
+  const attributionA = "color:hsl(228,45%,20%);text-decoration:none;";
   const toggleAttributionBtn = removeSpace(`position: absolute;
   cursor: pointer;
   border: none;
   background: inherit;
   bottom: 0px;
   right: -26px;
-  padding: 0.4rem 0.45rem;
+  padding-top: 0.4rem;
+  padding-bottom:.4rem;
+  padding-left: 0.45rem;
+  padding-right: 0.45rem;
   display: flex;
   justify-content: center;
-  align-items:center;border-radius:0px6px6px0px;`);
+  align-items:center;
+  border-bottom-right-radius: 6px;
+  border-top-right-radius: 6px;
+  `);
   const SvgStyle = removeSpace(``);
-
   attribution.style = attributionStyle;
   attribution.innerHTML = `
     <div style=${attributionContainerStyle}>
@@ -35,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <p style=${attributionP}>Coded by</p>
         <a style=${attributionA} href="https://twitter.com/mfarid_se">Mohamed Farid</a>.
       </div>
-      <button id="toggle-attribution" style=${toggleAttributionBtn}>
+      <button id="toggle-attribution" style=${toggleAttributionBtn} height='50px' width='1rem'>
         <svg width="16" height="32" viewBox="0 0 9 18" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 1L6.98764 8.36941C7.28616 8.73681 7.28616 9.26319 6.98764 9.63059L1 17" stroke="white" stroke-width="2"/>
         </svg>
@@ -54,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
         attributionSvg.style.transform = "";
       } else {
         attribution.classList.add("opened");
-        attribution.style.transform = " translate(200px)";
+        attribution.style.transform = " translate(180px)";
         attributionSvg.style.transform = "rotate(180deg)";
       }
     });

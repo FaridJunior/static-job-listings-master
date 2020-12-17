@@ -55,6 +55,10 @@ button {
   grid-template-rows: repeat(auto-fit, max-content);
   justify-items: center;
 }
+.selected__filters__wrapper:empty {
+  display: none;
+}
+
 .selected__job__filter__badge {
   font-size: 0.86em;
   font-weight: 700;
