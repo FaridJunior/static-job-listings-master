@@ -22,11 +22,12 @@ function App() {
   }, [filters, data]);
 
   function addFilter(filter) {
-    setFilters([...filters, "HTML"]);
+    const newFilters = new Set([...filters, filter]);
+    setFilters([...newFilters]);
   }
 
   function removeFilter(filter) {
-    const newFilters = filters.filter((filter) => filter !== "HTML");
+    const newFilters = filters.filter((f) => f !== filter);
     setFilters(newFilters);
   }
 

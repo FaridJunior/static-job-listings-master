@@ -84,6 +84,9 @@ button {
   background-color: var(--very-dark-grayish-cyan);
 }
 .clear__selected_filter {
+  border: none;
+  background-color: inherit;
+  font-size: 1em;
   cursor: pointer;
   align-self: center;
   justify-self: end;

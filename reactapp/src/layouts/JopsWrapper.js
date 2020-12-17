@@ -1,12 +1,17 @@
 import React from "react";
-
-function JopsWrapper(props) {
-  console.log("props.filtaredData", props.filtaredData);
+import JobWrapper from "../Components/JobWrapper";
+function JopsWrapper({ filtaredData, addFilter }) {
   return (
-    <div>
-      {props.filtaredData &&
-        props.filtaredData.map((jop) => <li>{jop.level}</li>)}
-    </div>
+    <main className="job__listing__main">
+      <div className="container">
+        <div className="jobs__wrapper">
+          {filtaredData &&
+            filtaredData.map((job) => (
+              <JobWrapper key={job.id} job={job} addFilter={addFilter} />
+            ))}
+        </div>
+      </div>
+    </main>
   );
 }
 
