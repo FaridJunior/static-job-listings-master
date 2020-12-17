@@ -1,3 +1,5 @@
-# Frontend Mentor - Job Listings Challenge [preview](https://static-job-listings-master-tau.vercel.app/)
+## Frontend Mentor - Job Listings Challenge [preview](https://static-job-listings-master-tau.vercel.app/)
 
-![Design preview for the Job Listings coding challenge](./design/desktop-preview.jpg)
+A challenge from Frontend Mentor.
+
+Coded by me! grin
