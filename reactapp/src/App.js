@@ -43,9 +43,6 @@ function App() {
         clearFilters={clearFilters}
       />
       <JopsWrapper filtaredData={filtaredData} addFilter={addFilter} />
-      <button onClick={addFilter}>add filter</button>
-      <button onClick={removeFilter}>delete filter</button>
-      <button onClick={clearFilters}>clear filter</button>
     </div>
   );
 }
