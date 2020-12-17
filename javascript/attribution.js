@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   attribution.classList.add("attribution");
   // styles
   const attributionStyle = removeSpace(`
-  position: absolute;
-  bottom: 20%;
+  position: fixed;
+  bottom: 20vh;
   width: 180px;
   left: -180px;
   transition: transform;
