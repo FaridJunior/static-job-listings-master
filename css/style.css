@@ -17,7 +17,6 @@
 }
 
 body {
-  min-height: 100vh;
   font-size: 15px;
   font-family: "Spartan", sans-serif;
 }
@@ -42,21 +41,22 @@ button {
     var(--desaturated-dark-cyan);
   background-size: cover;
 }
-.selected__filters__wrappers {
-  display: block;
+.selected__filters__wrapper {
   width: 77%; /* have tried to use container to mange width but it was overflow his parent*/
   min-height: 3.3rem;
   position: absolute;
+  bottom: -1.8rem;
   padding: 1rem 2rem;
   background-color: #fff;
   border-radius: 0.3rem;
   display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(100px, max-content));
+  grid-gap: 0.6rem;
+  grid-template-columns: repeat(auto-fill, minmax(94px, max-content));
   grid-template-rows: repeat(auto-fit, max-content);
+  justify-items: center;
 }
 .selected__job__filter__badge {
-  font-size: 0.86rem;
+  font-size: 0.86em;
   font-weight: 700;
   border-radius: 0.28rem;
   padding-left: 0.5rem;
@@ -94,7 +94,6 @@ button {
 
 .job__listing__main {
   background-color: var(--light-grayish-cyan-background);
-  height: 100vh;
 }
 .jobs__wrapper {
   padding-top: 4.5rem;
@@ -114,7 +113,7 @@ button {
   border-left: 0.3rem solid var(--desaturated-dark-cyan);
 }
 .job__info__wrapper,
-.job__filters__wrapper {
+.job__languages__tools__wrapper {
   flex: 1;
   display: flex;
   align-items: center;
@@ -141,7 +140,7 @@ button {
   color: var(--very-dark-grayish-cyan);
 }
 
-.job_name {
+.company__name {
   color: var(--desaturated-dark-cyan);
 }
 .new__badge,
@@ -160,13 +159,13 @@ button {
 .featured__badge {
   background-color: var(--very-dark-grayish-cyan);
 }
-.job__title {
+.job__position {
   color: var(--very-dark-grayish-cyan);
 }
-.job__title:hover {
+.job__position:hover {
   color: var(--desaturated-dark-cyan);
 }
-.job__title a {
+.job__position a {
   color: inherit;
   text-decoration: none;
 }
@@ -175,7 +174,9 @@ button {
   grid-template-columns: repeat(auto-fit, minmax(10px, max-content) 1.4rem);
   justify-items: center;
   font-size: 0.9em;
+  min-width: 260px;
 }
+
 .job__filter__badge {
   cursor: pointer;
   font-size: 0.86rem;
@@ -201,8 +202,11 @@ button {
       var(--desaturated-dark-cyan);
     background-size: cover;
   }
-  .selected__filters__wrappers {
+  .selected__filters__wrapper {
     width: 90%;
+    padding: 1rem 1rem;
+    grid-gap: 0.5rem;
+    font-size: 0.8rem;
   }
   .job__image {
     position: absolute;
@@ -224,13 +228,13 @@ button {
   .job__info {
     margin-left: 0;
   }
-  .job__filters__wrapper {
+  .job__languages__tools__wrapper {
     flex-wrap: wrap;
     justify-content: flex-start;
   }
   .job__filter__badge {
     margin-left: 0px;
-    margin-right: 1rem;
+    white-space: nowrap;
   }
 }
 
