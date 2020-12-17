@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <p style=${attributionP}>Coded by</p>
         <a style=${attributionA} href="https://twitter.com/mfarid_se">Mohamed Farid</a>.
       </div>
-      <button id="toggle-attribution" style=${toggleAttributionBtn} height='50px' width='1rem'>
+      <button id="toggle-attribution" aria-label="toogle-attribution "style=${toggleAttributionBtn} >
         <svg width="16" height="32" viewBox="0 0 9 18" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 1L6.98764 8.36941C7.28616 8.73681 7.28616 9.26319 6.98764 9.63059L1 17" stroke="white" stroke-width="2"/>
         </svg>
