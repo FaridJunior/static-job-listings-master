@@ -26,11 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="job__info__header">
                   <h2 class="company__name tt-c">${company}</h2>
                   ${isNew ? '<span class="new__badge tt-u">new!</span>' : ""}
-                  ${
-                    featured
-                      ? '<span class="featured__badge tt-u">featured</span>'
-                      : ""
-                  }
+                  ${featured ? '<span class="featured__badge tt-u">featured</span>' : ""}
                 </div>
                 <h3 class="job__position tt-c"><a href="#">${position}</a></h3>
                 <div class="job__info__footer text__muted">
@@ -43,12 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="job__languages__tools__wrapper">
             <span class="job__filter__badge tt-c">${role}</span>
             <span class="job__filter__badge tt-c">${level}</span>
-            ${languages.map(
-              (lang) => `<span class="job__filter__badge tt-c">${lang}</span>`
-            )}
-            ${tools.map(
-              (tool) => `<span class="job__filter__badge tt-c">${tool}</span>`
-            )}
+            ${languages.map((lang) => `<span class="job__filter__badge tt-c">${lang}</span>`)}
+            ${tools.map((tool) => `<span class="job__filter__badge tt-c">${tool}</span>`)}
             </div>
           </div>
     `);
@@ -71,10 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectedFiltersWrapper = document.createElement("div");
     const clearSelectedFilterBtn = document.createElement("div");
     clearSelectedFilterBtn.textContent = "clear";
-    clearSelectedFilterBtn.classList.add(
-      "clear__selected_filter",
-      "text__muted"
-    );
+    clearSelectedFilterBtn.classList.add("clear__selected_filter", "text__muted");
     selectedFiltersWrapper.className = "selected__filters__wrapper";
     selectedFiltersWrapper.innerHTML = removeComman(`
         ${[...filters].map(
@@ -90,9 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
       selectedFiltersWrapper.appendChild(clearSelectedFilterBtn);
     }
     jobListingHeader.appendChild(selectedFiltersWrapper);
-    const selectedJobFilterBadge = document.querySelectorAll(
-      ".remove__filter__btn"
-    );
+    const selectedJobFilterBadge = document.querySelectorAll(".remove__filter__btn");
     selectedJobFilterBadge.forEach((selected) =>
       selected.addEventListener("click", (e) => {
         removeFilter(selected.dataset.filter);
@@ -105,24 +92,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function setHandleFilter() {
-    const jobLanguagesToolsWrapper = document.querySelectorAll(
-      ".job__languages__tools__wrapper"
-    );
-    jobLanguagesToolsWrapper.forEach((job) =>
-      job.addEventListener("click", handleAddFilter)
-    );
+    const jobLanguagesToolsWrapper = document.querySelectorAll(".job__languages__tools__wrapper");
+    jobLanguagesToolsWrapper.forEach((job) => job.addEventListener("click", handleAddFilter));
   }
   function filterJops(data, filters) {
-    function filtersHasAny(...items) {
-      for (const item of items) {
-        if (filters.has(item)) return true;
-      }
+    function jopHasFilters(...jopFilters) {
+      let flag = true;
+      filters.forEach((filter) => {
+        console.log(filter);
+        console.log(jopFilters);
+        if (!jopFilters.includes(filter)) flag = false;
+      });
+      return flag;
     }
     // if there is a filters return filtered data otherwise return all data
     return filters.size > 0
-      ? data.filter((job) =>
-          filtersHasAny(job.role, job.level, ...job.tools, ...job.languages)
-        )
+      ? data.filter((job) => jopHasFilters(job.role, job.level, ...job.tools, ...job.languages))
       : data;
   }
   function handleAddFilter(e) {

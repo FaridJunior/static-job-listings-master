@@ -1,13 +1,15 @@
 export function filterData(data, filters) {
-  function filtersHasAny(...features) {
-    for (const feature of features) {
-      if (filters.includes(feature)) return true;
-    }
+  function jopHasFilters(...jopFilters) {
+    let flag = true;
+    filters.forEach((filter) => {
+      console.log(filter);
+      console.log(jopFilters);
+      if (!jopFilters.includes(filter)) flag = false;
+    });
+    return flag;
   }
   // if there is a filters return filtered data otherwise return all data
   return filters.length > 0
-    ? data.filter((job) =>
-        filtersHasAny(job.role, job.level, ...job.tools, ...job.languages)
-      )
+    ? data.filter((job) => jopHasFilters(job.role, job.level, ...job.tools, ...job.languages))
     : data;
 }
